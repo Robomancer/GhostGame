@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GhostScript : MonoBehaviour
 {
+    //Ghost Variables
     private enum GhostType { King, Queen, Knight, Archer, Bard, Mage };
     private string FavoriteItem;
     private string Name;
@@ -21,9 +22,11 @@ public class GhostScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(FavoriteItem)) 
+        if (collision.gameObject.tag.ToString() == FavoriteItem) 
         {
-
+            // Increase Favorability
+            // Give New Item
+            // Bank Points
         }
     }
 }
