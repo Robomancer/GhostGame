@@ -10,7 +10,7 @@ public class ItemInteractionScript : BaseFocusHandler
     bool Dwell = false;
 
     //ITEM Variables
-    private enum ItemType {Cross, Book, Flower, Coins};
+    public string Name;
     bool IsHidden = true;
     //Owner goes here
 
@@ -33,16 +33,7 @@ public class ItemInteractionScript : BaseFocusHandler
         StopAllCoroutines();
         DwelledObject = null;
     }
-    private void Awake()
-    {
-
-    }
-    void Start()
-    {
-
-    }
-    void Update() 
-    {
-
-    }
+    private void Awake() { }
+    void Start() { }
+    void Update() { }
 }
