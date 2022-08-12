@@ -10,10 +10,10 @@ public class ItemInteractionScript : BaseFocusHandler
     bool Dwell = false;
 
     //ITEM Variables
-    public enum ItemType {Cross, Book, Flower, Coins};
+    private enum ItemType {Cross, Book, Flower, Coins};
     bool IsHidden = true;
-    int Points = 0;
     //Owner goes here
+
     IEnumerator DwellTimer(GameObject obj) 
     {
         DwelledObject = obj;
@@ -33,9 +33,9 @@ public class ItemInteractionScript : BaseFocusHandler
         StopAllCoroutines();
         DwelledObject = null;
     }
-    // Start is called before the first frame update
     private void Awake()
     {
+
     }
     void Start()
     {
