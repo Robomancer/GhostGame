@@ -20,6 +20,7 @@ public class ItemInteractionScript : BaseFocusHandler
         yield return new WaitForSeconds(DwellTime);
         if (obj == DwelledObject)
         {
+            //Place into Inventory
             Dwell = true;
         }
     }

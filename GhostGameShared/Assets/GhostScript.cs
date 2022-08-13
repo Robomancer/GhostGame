@@ -6,14 +6,15 @@ public class GhostScript : MonoBehaviour
 {
     GameManagerScript gameManagerScript;
     //Ghost Variables
-    private enum GhostType { King, Queen, Knight, Archer, Bard, Mage };
     public string FavoriteItem;
     public string Name;
 
     // Ghost Functions
     private void Hide() 
     {
-        gameManagerScript.HideGhost();
+        Vector3 GPSCoords;
+        //Move to another GPS point
+        transform.localPosition = GPSCoords;
     }
     //AcceptItem
     private void OnCollisionEnter(Collision collision)
@@ -34,8 +35,11 @@ public class GhostScript : MonoBehaviour
         else 
         {
             // Display Item Rejection
+
             // Decrease Favorability
+
             // Hide
+            Hide();
         }
     }
     //GiveItem
@@ -43,9 +47,9 @@ public class GhostScript : MonoBehaviour
     {
         // Choose Non-Favorite Item
         // Hide
+        Hide();
         // Spawn at Ghost GPS Point
     }
-
     void Start() 
     {
         gameManagerScript = GetComponent<GameManagerScript>();
