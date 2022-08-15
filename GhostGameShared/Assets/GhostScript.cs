@@ -12,9 +12,9 @@ public class GhostScript : MonoBehaviour
     // Ghost Functions
     private void Hide() 
     {
-        Vector3 GPSCoords;
+        // Vector3 GPSCoords;
         //Move to another GPS point
-        transform.localPosition = GPSCoords;
+        // transform.localPosition = GPSCoords;
     }
     //AcceptItem
     private void OnCollisionEnter(Collision collision)
@@ -34,21 +34,21 @@ public class GhostScript : MonoBehaviour
         }
         else 
         {
-            // Display Item Rejection
+            //Display Item Rejection
 
-            // Decrease Favorability
+            //Decrease Favorability
 
-            // Hide
+            //Hide
             Hide();
         }
     }
     //GiveItem
     private void Give() 
     {
-        // Choose Non-Favorite Item
-        // Hide
+        //Choose Non-Favorite Item
+        //Hide
         Hide();
-        // Spawn at Ghost GPS Point
+        //Spawn at Ghost GPS Point
     }
     void Start() 
     {
