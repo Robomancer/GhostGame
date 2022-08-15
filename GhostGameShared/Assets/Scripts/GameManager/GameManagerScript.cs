@@ -9,11 +9,12 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         clientAPI = FindObjectOfType<ClientAPI>();
+        StartCoroutine(HideItem());
     }
     //Item Spawning
     public IEnumerator HideItem() 
     {
-        yield return StartCoroutine(clientAPI.Get("localhost: 5000"));
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/hiddenitems/getAllHiddenItems"));
         Debug.Log(clientAPI.output);
         //yield return StartCoroutine(clientAPI.Post("localhost: 5000", item));
         //Item Generation

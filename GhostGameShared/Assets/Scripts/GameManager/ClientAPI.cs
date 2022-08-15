@@ -50,7 +50,7 @@ public class ClientAPI : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Get(url+"/users  "));
+        //StartCoroutine(Get(url+"/users  "));
         
         //StartCoroutine(Post(url+"/users/add", new User("Name", "ID")));
     }
