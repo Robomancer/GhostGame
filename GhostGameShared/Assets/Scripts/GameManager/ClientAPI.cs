@@ -46,6 +46,7 @@ public class User{
 public class ClientAPI : MonoBehaviour
 {
     public string url;
+    public string output;
 
     void Start()
     {
@@ -69,6 +70,7 @@ public class ClientAPI : MonoBehaviour
                 {
                     // handle the result
                     var result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                    output = result;
                     Debug.Log(result);
                 }
                 else

@@ -11,19 +11,21 @@ public class GameManagerScript : MonoBehaviour
         clientAPI = FindObjectOfType<ClientAPI>();
     }
     //Item Spawning
-    public void HideItem() 
+    public IEnumerator HideItem() 
     {
-        StartCoroutine(clientAPI.Get("localhost: 5000"));
+        yield return StartCoroutine(clientAPI.Get("localhost: 5000"));
+        Debug.Log(clientAPI.output);
+        //yield return StartCoroutine(clientAPI.Post("localhost: 5000", item));
         //Item Generation
         int choose = Random.Range(0,items.Length);
         //Select Item Prefab
         Item item = items[choose];
-        //Random GPS Point on Campus - Make a List of GPS Coords on Campus and Spawn Items at an Empty Coord
+        //Random GPS Point on Campus
+        //Make a List of GPS Coords on Campus and Spawn Items at an Empty Coord
         // Vector3 GPSCoords;
         //Spawn at GPS
-        // Instantiate(item.Prefab,GPSCoords,Quaternion.identity);
+        Instantiate(item.Prefab,new Vector3(1,0,1),Quaternion.identity);
         //Add Record of Item to Server
-        StartCoroutine(clientAPI.Post("localhost: 5000",item));
     }
     //Item Hidden/Found
     public void SpawnItem() 
