@@ -2942,9 +2942,9 @@ MonoBehaviour:
     Prefab: {fileID: 7442181763179726543, guid: d1628c9c5974f0f4fa4403f1ba2b5993, type: 3}
   - name: Blue Potion
     Prefab: {fileID: 2917968066676407146, guid: a40094524c7bbdb4ab1e6323d9df4d69, type: 3}
-  - name: 
-    Prefab: {fileID: 6126225866045763606, guid: a90f20cdd37d5b740a06f88ed5786344, type: 3}
   - name: Bow
+    Prefab: {fileID: 6126225866045763606, guid: a90f20cdd37d5b740a06f88ed5786344, type: 3}
+  - name: Decree
     Prefab: {fileID: 6464047823933172242, guid: 1fce32204c4b8de4dae0a6106f688767, type: 3}
   - name: Green Egg
     Prefab: {fileID: 5473332177505204441, guid: 04ef6a0571dd73e47b457ef4a5ce9460, type: 3}
@@ -2989,6 +2989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: 
+  output: 
 --- !u!1 &1550500504
 GameObject:
   m_ObjectHideFlags: 0
