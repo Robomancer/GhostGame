@@ -46,6 +46,7 @@ public class GhostScript : MonoBehaviour
     private void Give() 
     {
         //Choose Non-Favorite Item
+        gameManagerScript.SpawnItem(false);
         //Hide
         Hide();
         //Spawn at Ghost GPS Point

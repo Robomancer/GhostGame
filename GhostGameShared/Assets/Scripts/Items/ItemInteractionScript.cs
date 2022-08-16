@@ -8,6 +8,7 @@ public class ItemInteractionScript : BaseFocusHandler
     public float DwellTime = 10;
     GameObject DwelledObject;
     bool Dwell = false;
+    GameManagerScript gameManagerScript;
 
     //ITEM Variables
     public string Name;
@@ -20,7 +21,7 @@ public class ItemInteractionScript : BaseFocusHandler
         yield return new WaitForSeconds(DwellTime);
         if (obj == DwelledObject)
         {
-            //Place into Inventory
+            gameManagerScript.UserFoundItem(DwelledObject);
             Dwell = true;
         }
     }
@@ -34,7 +35,10 @@ public class ItemInteractionScript : BaseFocusHandler
         StopAllCoroutines();
         DwelledObject = null;
     }
-    private void Awake() { }
+    private void Awake() 
+    {
+        gameManagerScript = FindObjectOfType<GameManagerScript>();
+    }
     void Start() { }
     void Update() { }
 }
