@@ -9,13 +9,18 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         clientAPI = FindObjectOfType<ClientAPI>();
-        StartCoroutine(HideItem());
+       // StartCoroutine(HideItem());
     }
-    //Item Spawning
-    public IEnumerator HideItem() 
+
+    public IEnumerator AllItemsOnRadar() 
     {
         yield return StartCoroutine(clientAPI.Get("localhost:9080/hiddenitems/getAllHiddenItems"));
-        Debug.Log(clientAPI.output);
+        // add all items to radar use cords 
+    }
+
+    //Item Spawning all items 
+    public IEnumerator SpawnItem() 
+    {
         //yield return StartCoroutine(clientAPI.Post("localhost: 5000", item));
         //Item Generation
         int choose = Random.Range(0,items.Length);
@@ -27,13 +32,42 @@ public class GameManagerScript : MonoBehaviour
         //Spawn at GPS
         Instantiate(item.Prefab,new Vector3(1,0,1),Quaternion.identity);
         //Add Record of Item to Server
+
+
+        yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenItem",item));
     }
-    //Item Hidden/Found
-    public void SpawnItem() 
+    //Item Hidden/Found player inventory 
+    public IEnumerator UserHideItem() 
     {
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/hiddenitems/addHiddenUserItem"));
         //Select Item from PLayer
         //Current GPS Point of Item
         //IsHidden = true;
         //Point Calculation?
+    }
+
+    public IEnumerator UserFoundItem(Item item) 
+    {
+        //Select Item from PLayer
+        //Current GPS Point of Item
+        //IsHidden = false;
+        //Point Calculation?
+        
+        yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/checkLocation"),item);
+    }
+
+
+    public IEnumerator UserScore() 
+    {
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/user/getScore"));
+
+        // print numbers from output 
+    }
+
+    public IEnumerator leaderBoard() 
+    {
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/user/leaderBoard"));
+
+        // print numbers from output 
     }
 }
