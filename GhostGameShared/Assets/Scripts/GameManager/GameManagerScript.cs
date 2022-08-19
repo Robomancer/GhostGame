@@ -6,14 +6,20 @@ public class GameManagerScript : MonoBehaviour
 {
     public Item[] items;
     ClientAPI clientAPI;
+    bool NewItem = false;
     void Start()
     {
         clientAPI = FindObjectOfType<ClientAPI>();
        // StartCoroutine(HideItem());
     }
-    void Update()
+    void Heartbeat() 
     {
-        //Heartbeat Ping
+        if (NewItem) 
+        {
+            //Heartbeat stuff I guess
+            AllItemsOnRadar();
+            NewItem = !NewItem;
+        }
     }
 
     public IEnumerator AllItemsOnRadar() 
@@ -47,6 +53,7 @@ public class GameManagerScript : MonoBehaviour
         }
         //Add Record of Item to Server
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenItem",item));
+        NewItem = !NewItem;
     }
     //Item Hidden/Found player inventory 
     public IEnumerator UserHideItem(Item item) 
@@ -56,6 +63,7 @@ public class GameManagerScript : MonoBehaviour
         //IsHidden = true;
         //Point Calculation?
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenUserItem",item));
+        NewItem = !NewItem;
     }
 
     public IEnumerator UserFoundItem(GameObject obj) 
@@ -67,6 +75,7 @@ public class GameManagerScript : MonoBehaviour
         //IsHidden = false;
         //Point Calculation?
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/checkLocation",item));
+        NewItem = !NewItem;
     }
 
 
