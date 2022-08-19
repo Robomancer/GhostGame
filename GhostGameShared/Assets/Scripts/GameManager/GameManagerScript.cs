@@ -11,6 +11,10 @@ public class GameManagerScript : MonoBehaviour
         clientAPI = FindObjectOfType<ClientAPI>();
        // StartCoroutine(HideItem());
     }
+    void Update()
+    {
+        //Heartbeat Ping
+    }
 
     public IEnumerator AllItemsOnRadar() 
     {
@@ -22,12 +26,12 @@ public class GameManagerScript : MonoBehaviour
     //Item Spawning all items 
     public IEnumerator SpawnItem(bool random) 
     {
+        //Item Generation
+        int choose = Random.Range(0, items.Length);
+        //Select Item Prefab
+        Item item = items[choose];
         if (random)
         {
-            //Item Generation
-            int choose = Random.Range(0, items.Length);
-            //Select Item Prefab
-            Item item = items[choose];
             //Random GPS Point on Campus
             //Make a List of GPS Coords on Campus and Spawn Items at an Empty Coord
             // Vector3 GPSCoords;
@@ -36,10 +40,6 @@ public class GameManagerScript : MonoBehaviour
         }
         else 
         {
-            //Item Generation
-            int choose = Random.Range(0, items.Length);
-            //Select Item Prefab
-            Item item = items[choose];
             //Random GPS Point on Campus
             //Spawn Object in front
             //Spawn at GPS
@@ -51,11 +51,11 @@ public class GameManagerScript : MonoBehaviour
     //Item Hidden/Found player inventory 
     public IEnumerator UserHideItem(Item item) 
     {
-        yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenUserItem",item));
         //Select Item from PLayer
         //Current GPS Point of Item
         //IsHidden = true;
         //Point Calculation?
+        yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenUserItem",item));
     }
 
     public IEnumerator UserFoundItem(GameObject obj) 
@@ -66,7 +66,6 @@ public class GameManagerScript : MonoBehaviour
         //Current GPS Point of Item
         //IsHidden = false;
         //Point Calculation?
-        
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/checkLocation",item));
     }
 
