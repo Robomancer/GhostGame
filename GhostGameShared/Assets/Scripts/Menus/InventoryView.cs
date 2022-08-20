@@ -9,6 +9,14 @@ public class InventoryView : View
     public override void Initialize()
     {
         _backButton.onClick.AddListener(() => ViewManager.ShowLast());
-        //_itemButton.onClick.AddListener(() => GameManagerScript.UserHideItem(_itemButton.item));
+        _itemButton.onClick.AddListener(() => ItemSpawn());
+
+        //check user's saved inventory -> populate GetChild(4).GetChild(0-11) [order is bag, bPotion, gPotion, rPotion, bow, quiver, sceptre, shield, sword, decree, gEgg, rEgg]
+    }
+
+    public void ItemSpawn()
+    {
+        //check item > 0, call GameManagerScript.UserHideItem(_itemButton.item)
+        ViewManager.Show<GameView>();
     }
 }
