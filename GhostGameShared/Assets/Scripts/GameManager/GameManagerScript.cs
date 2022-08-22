@@ -55,13 +55,12 @@ public class GameManagerScript : MonoBehaviour
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenItem",item));
         NewItem = !NewItem;
     }
+
     //Item Hidden/Found player inventory 
     public IEnumerator UserHideItem(Item item) 
     {
-        //Select Item from PLayer
         //Current GPS Point of Item
         //IsHidden = true;
-        //Point Calculation?
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenUserItem",item));
         NewItem = !NewItem;
     }

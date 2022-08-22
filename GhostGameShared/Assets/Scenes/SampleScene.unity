@@ -11085,26 +11085,26 @@ MonoBehaviour:
     Prefab: {fileID: 7442181763179726543, guid: d1628c9c5974f0f4fa4403f1ba2b5993, type: 3}
   - name: Blue Potion
     Prefab: {fileID: 2917968066676407146, guid: a40094524c7bbdb4ab1e6323d9df4d69, type: 3}
-  - name: Bow
-    Prefab: {fileID: 6126225866045763606, guid: a90f20cdd37d5b740a06f88ed5786344, type: 3}
-  - name: Decree
-    Prefab: {fileID: 6464047823933172242, guid: 1fce32204c4b8de4dae0a6106f688767, type: 3}
-  - name: Green Egg
-    Prefab: {fileID: 5473332177505204441, guid: 04ef6a0571dd73e47b457ef4a5ce9460, type: 3}
   - name: Green Potion
     Prefab: {fileID: 5576767239680589460, guid: f7da4660cf24fe74d9b43ecc2fe51d51, type: 3}
-  - name: Quiver
-    Prefab: {fileID: 1586395368087098978, guid: 538d85569e675a743b63c1ccd5d17b37, type: 3}
-  - name: Red Egg
-    Prefab: {fileID: 8345801819901853128, guid: 551fc39f9ebeafa40b9924d146a2b74e, type: 3}
   - name: Red Potion
     Prefab: {fileID: 2141389461852642046, guid: ccb1493ec38b2704c85b80aa6ea8e317, type: 3}
+  - name: Bow
+    Prefab: {fileID: 6126225866045763606, guid: a90f20cdd37d5b740a06f88ed5786344, type: 3}
+  - name: Quiver
+    Prefab: {fileID: 1586395368087098978, guid: 538d85569e675a743b63c1ccd5d17b37, type: 3}
   - name: Scepter
     Prefab: {fileID: 4654320759071672698, guid: ae9aba2fc9e07024bb016c967bbf1b25, type: 3}
   - name: Shield
     Prefab: {fileID: 2951340232514864087, guid: 01ca9d009f1d23a4784f410d28c5d1b7, type: 3}
   - name: Sword
     Prefab: {fileID: 5351088702887400662, guid: 2a403854d846e4d47b8f2bb4ecd097a8, type: 3}
+  - name: Decree
+    Prefab: {fileID: 6464047823933172242, guid: 1fce32204c4b8de4dae0a6106f688767, type: 3}
+  - name: Green Egg
+    Prefab: {fileID: 5473332177505204441, guid: 04ef6a0571dd73e47b457ef4a5ce9460, type: 3}
+  - name: Red Egg
+    Prefab: {fileID: 8345801819901853128, guid: 551fc39f9ebeafa40b9924d146a2b74e, type: 3}
 --- !u!4 &1303112861
 Transform:
   m_ObjectHideFlags: 0
@@ -15101,7 +15101,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 1874628290}
-  _itemButton: {fileID: 0}
+  _bagItemButton: {fileID: 1360348161}
+  _bpotItemButton: {fileID: 497804815}
+  _gpotItemButton: {fileID: 415277861}
+  _rpotItemButton: {fileID: 1782193016}
+  _bowItemButton: {fileID: 360796299}
+  _quiverItemButton: {fileID: 886014435}
+  _sceptreItemButton: {fileID: 72896291}
+  _shieldItemButton: {fileID: 139893836}
+  _swordItemButton: {fileID: 241840454}
+  _decreeItemButton: {fileID: 812793399}
+  _geggItemButton: {fileID: 733377357}
+  _reggItemButton: {fileID: 1498232156}
+  _amounts: {fileID: 1300576134}
+  GM: {fileID: 1303112860}
 --- !u!114 &1944227125
 MonoBehaviour:
   m_ObjectHideFlags: 0
