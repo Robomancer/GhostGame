@@ -6740,8 +6740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focusEnabled: 1
-  DwellTime: 5
-  Name: 
+  DwellTime: 3
+  Name: Apple
 --- !u!114 &818420792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9401,8 +9401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cee695bf506a1d4fb4828a2f594ae93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FavoriteItem: 
-  Name: 
+  FavoriteItem: Apple
+  Name: Towle
 --- !u!114 &1075581975
 MonoBehaviour:
   m_ObjectHideFlags: 0
