@@ -62,6 +62,7 @@ public class InventoryView : View
 
             //sets user item -1
             invAmounts[invItem] -= 1;
+            // Add Comment for Line Below
             _amounts.transform.GetChild(invItem).gameObject.GetComponent<Text>().text = invAmounts[invItem].ToString();
 
             //changes to game view
@@ -69,7 +70,7 @@ public class InventoryView : View
         }
         else
         {
-            //no item? implement sick burn
+            //no item? implement sick burn <- Toxic
         }        
     }
 }

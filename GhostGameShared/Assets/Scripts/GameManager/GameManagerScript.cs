@@ -20,14 +20,20 @@ public class GameManagerScript : MonoBehaviour
         GPSCords.Add(new Vector2(28.150139662989265f, -81.8507175788629f));
         // StartCoroutine(HideItem());
     }
-    void Heartbeat() 
+    private void Awake()
     {
-        if (NewItem) 
+        if (NewItem)
         {
             //Heartbeat stuff I guess 
             AllItemsOnRadar();
             NewItem = !NewItem;
         }
+    }
+
+    IEnumerator Heartbeat() 
+    {
+        StartCoroutine(SpawnItem(true));
+        yield return new WaitForSeconds(.1f);
     }
 
     public IEnumerator AllItemsOnRadar() 
@@ -71,11 +77,13 @@ public class GameManagerScript : MonoBehaviour
         //Current GPS Point of Item
         //IsHidden = true;
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenUserItem",item));
+        Instantiate(item.Prefab, gpsIntegrationModule.ToGPS(gpsIntegrationModule.CurrentGPSPosition),Quaternion.identity);
         NewItem = !NewItem;
     }
 
     public IEnumerator UserFoundItem(GameObject obj) 
     {
+        /*I Expect a Bug and will annoy Dr. Towle of Mon for insight here*/
         //Select Item from PLayer
         Item item = new Item(obj.name);
         item.Prefab = obj.gameObject;
@@ -83,6 +91,7 @@ public class GameManagerScript : MonoBehaviour
         //IsHidden = false;
         //Point Calculation?
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/checkLocation",item));
+        Destroy(obj);
         NewItem = !NewItem;
     }
 
