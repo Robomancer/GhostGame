@@ -12,9 +12,10 @@ public class GhostScript : MonoBehaviour
     // Ghost Functions
     private void Hide() 
     {
-        // Vector3 GPSCoords;
+        //Make a List of GPS Coords on Campus and Spawn Items at an Empty Coord 
+        int gpsrand = Random.Range(0, gameManagerScript.GPSCords.Count);
         //Move to another GPS point
-        // transform.localPosition = GPSCoords;
+        transform.localPosition = new Vector3(gameManagerScript.GPSCords[gpsrand].x + Random.Range(0,4), transform.position.y, gameManagerScript.GPSCords[gpsrand].y + Random.Range(0, 4));
     }
     //AcceptItem
     private void OnCollisionEnter(Collision collision)

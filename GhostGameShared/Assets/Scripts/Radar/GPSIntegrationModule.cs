@@ -93,7 +93,7 @@ public class GPSIntegrationModule : MonoBehaviour
     /// </summary>
     /// <param name="pos">Global Unity Coordinate</param>
     /// <returns>Vector 2 (Lat, Long)</returns>
-    Vector2 ToGPS(Vector3 pos)
+    public Vector2 ToGPS(Vector3 pos)
     {
         if(StartingGPS != null)
         {

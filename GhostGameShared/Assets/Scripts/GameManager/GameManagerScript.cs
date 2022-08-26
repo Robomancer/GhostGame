@@ -6,17 +6,25 @@ public class GameManagerScript : MonoBehaviour
 {
     public Item[] items;
     ClientAPI clientAPI;
+    GPSIntegrationModule gpsIntegrationModule;
     bool NewItem = false;
+    public List<Vector2> GPSCords;
     void Start()
     {
         clientAPI = FindObjectOfType<ClientAPI>();
-       // StartCoroutine(HideItem());
+        gpsIntegrationModule = FindObjectOfType<GPSIntegrationModule>();
+        // GPS List
+        GPSCords.Add(new Vector2(28.15026932515052f, -81.84946512471909f));
+        GPSCords.Add(new Vector2(28.14949643411042f, -81.8476391932996f));
+        GPSCords.Add(new Vector2(28.14836530473714f, -81.84648222281147f));
+        GPSCords.Add(new Vector2(28.150139662989265f, -81.8507175788629f));
+        // StartCoroutine(HideItem());
     }
     void Heartbeat() 
     {
         if (NewItem) 
         {
-            //Heartbeat stuff I guess
+            //Heartbeat stuff I guess 
             AllItemsOnRadar();
             NewItem = !NewItem;
         }
@@ -24,7 +32,7 @@ public class GameManagerScript : MonoBehaviour
 
     public IEnumerator AllItemsOnRadar() 
     {
-        // Radar Team
+        // Radar Team 
         yield return StartCoroutine(clientAPI.Get("localhost:9080/hiddenitems/getAllHiddenItems"));
         // add all items to radar use cords 
     }
@@ -32,26 +40,27 @@ public class GameManagerScript : MonoBehaviour
     //Item Spawning all items 
     public IEnumerator SpawnItem(bool random) 
     {
-        //Item Generation
+        //Item Generation 
         int choose = Random.Range(0, items.Length);
-        //Select Item Prefab
+        //Select Item Prefab 
         Item item = items[choose];
         if (random)
         {
-            //Random GPS Point on Campus
-            //Make a List of GPS Coords on Campus and Spawn Items at an Empty Coord
-            // Vector3 GPSCoords;
-            //Spawn at GPS
-            Instantiate(item.Prefab, new Vector3(1, 0, 1), Quaternion.identity);
+            //Random GPS Point on Campus 
+            int gpsrand = Random.Range(0, GPSCords.Count);
+            //Make a List of GPS Coords on Campus and Spawn Items at an Empty Coord 
+            // Vector3 GPSCoords; 
+            //Spawn at GPS 
+            Instantiate(item.Prefab, GPSCords[gpsrand], Quaternion.identity);
         }
         else 
         {
-            //Random GPS Point on Campus
-            //Spawn Object in front
-            //Spawn at GPS
-            Instantiate(item.Prefab,Vector3.forward + new Vector3(0,0,0.2f), Quaternion.identity);
+            //Random GPS Point on Campus 
+            //Spawn Object in front 
+            //Spawn at GPS 
+            Instantiate(item.Prefab, gpsIntegrationModule.ToGPS(gpsIntegrationModule.CurrentGPSPosition), Quaternion.identity);
         }
-        //Add Record of Item to Server
+        //Add Record of Item to Server 
         yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenItem",item));
         NewItem = !NewItem;
     }
