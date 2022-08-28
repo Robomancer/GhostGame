@@ -18,7 +18,14 @@ public class GameManagerScript : MonoBehaviour
         GPSCords.Add(new Vector2(28.14949643411042f, -81.8476391932996f));
         GPSCords.Add(new Vector2(28.14836530473714f, -81.84648222281147f));
         GPSCords.Add(new Vector2(28.150139662989265f, -81.8507175788629f));
-        // StartCoroutine(HideItem());
+         //     StartCoroutine(SpawnItem(true));
+         StartCoroutine(UserHideItem(items[0]));
+         //StartCoroutine(UserFoundItem(GameObject));
+         StartCoroutine(UserScore());
+         Debug.Log(clientAPI.output);
+         //StartCoroutine(leaderBoard());
+        Debug.Log("TEST");
+         Debug.Log(clientAPI.output);
     }
     private void Awake()
     {
@@ -32,7 +39,8 @@ public class GameManagerScript : MonoBehaviour
 
     IEnumerator Heartbeat() 
     {
-        StartCoroutine(SpawnItem(true));
+        //StartCoroutine(SpawnItem(true));
+        Debug.Log("TEST");
         yield return new WaitForSeconds(.1f);
     }
 
@@ -66,8 +74,8 @@ public class GameManagerScript : MonoBehaviour
             //Spawn at GPS 
             Instantiate(item.Prefab, gpsIntegrationModule.ToGPS(gpsIntegrationModule.CurrentGPSPosition), Quaternion.identity);
         }
-        //Add Record of Item to Server 
-        yield return StartCoroutine(clientAPI.Post("localhost:9080/hiddenitems/addHiddenItem",item));
+        //Add Record of Item to Server needs to be this route addHiddenItem getAllHiddenItems just returns a list of the items
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/hiddenitems/getAllHiddenItems"));
         NewItem = !NewItem;
     }
 
@@ -85,7 +93,7 @@ public class GameManagerScript : MonoBehaviour
     {
         /*I Expect a Bug and will annoy Dr. Towle of Mon for insight here*/
         //Select Item from PLayer
-        Item item = new Item(obj.name);
+        Item item = new Item(obj.name,"","","","");
         item.Prefab = obj.gameObject;
         //Current GPS Point of Item
         //IsHidden = false;
@@ -98,13 +106,13 @@ public class GameManagerScript : MonoBehaviour
 
     public IEnumerator UserScore() 
     {
-        yield return StartCoroutine(clientAPI.Get("localhost:9080/user/getScore"));
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/users/getScore"));
         // print numbers from output 
     }
 
     public IEnumerator leaderBoard() 
     {
-        yield return StartCoroutine(clientAPI.Get("localhost:9080/user/leaderBoard"));
+        yield return StartCoroutine(clientAPI.Get("localhost:9080/users/leaderBoard"));
         // print numbers from output 
     }
 }

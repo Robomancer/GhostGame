@@ -22,10 +22,20 @@ public static class JsonHelper
 public class Item{
 
     public string name = "";
+    //if (!name || !loc || !itemID || !playerID || !timePlaced) {
+    public string loc = "";
+    public string itemID = "";
+    public string playerID = "";
+    
+    public string timePlaced = "";
     public GameObject Prefab;
 
-    public Item(string name){
+    public Item(string name,string loc,string itemID,string playerID, string timePlaced){
         this.name = name;
+        this.loc = loc;
+        this.itemID = itemID;
+        this.playerID = playerID;
+        this.timePlaced = timePlaced;
     }
 }
 
@@ -88,7 +98,7 @@ public IEnumerator Post(string url, Item item)
   var jsonData = JsonUtility.ToJson(item);
   Debug.Log(jsonData);
 
-  using(UnityWebRequest www = UnityWebRequest.Post("localhost:5000/users/add", jsonData))
+  using(UnityWebRequest www = UnityWebRequest.Post(url, jsonData))
   {
         www.SetRequestHeader("content-type", "application/json");
     www.uploadHandler.contentType = "application/json";
