@@ -32,15 +32,19 @@ public class GameManagerScript : MonoBehaviour
         if (NewItem)
         {
             //Heartbeat stuff I guess 
-            AllItemsOnRadar();
+            StartCoroutine(AllItemsOnRadar());
             NewItem = !NewItem;
         }
     }
 
+    private void Update(){
+        StartCoroutine(Heartbeat());
+    }
+
     IEnumerator Heartbeat() 
     {
-        //StartCoroutine(SpawnItem(true));
-        Debug.Log("TEST");
+        StartCoroutine(SpawnItem(true));
+        Debug.Log("heart beat");
         yield return new WaitForSeconds(.1f);
     }
 
